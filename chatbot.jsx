@@ -44,8 +44,11 @@ function ChatInput({chatMessages, setChatMessages}){
       <input 
         placeholder="Send a message to Chatbot" 
         size="34"
+        className="chat-input"
         onChange={updateMessage} />
-      <button onClick={sendMessage}>Send</button>  
+      <button 
+        onClick={sendMessage}
+        className="send-button">Send</button>  
     </>
   );
 }
