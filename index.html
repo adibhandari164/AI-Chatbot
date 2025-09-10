@@ -22,6 +22,45 @@
         border-radius: 4px;
         width: 70%;
         box-sizing: border-box; /* Ensures padding doesn't affect total width */
+        flex-grow: 1;
+      }
+      .chat-input-container {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Space between input and button */
+        margin-top: 20px; /* Space above the input container */
+        
+      }
+      .app-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .chat-message-user {
+        text-align: right;
+        background-color: #dcf8c6;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px 0;
+        max-width: 80%;
+        align-self: flex-end;
+        justify-content: end;
+        display: flex;
+      }
+      .chat-message-ai {
+        text-align: left;
+        background-color: #f1f0f0;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px 0;
+        max-width: 80%;
+        align-self: flex-start;
+        display: flex;
+      }
+      .message-text {
+        display: inline-block;
+        margin: 0 10px; /* Space between text and avatar */
       }
     </style>
   </head>

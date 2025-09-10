@@ -6,3 +6,6 @@
 6) Array Destructuring
 7) Lifting the State Up = share state between components.
 8) 'className' attribute in react is converted to class attribute in html because class is a reserved keyword
+9) State: State automatically updates the component HTML when the the data changes.
+10) Hooks =  Insert React features unto our component. For eg. React.useState('') is a hook
+11) 

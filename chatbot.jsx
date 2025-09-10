@@ -1,9 +1,9 @@
 // const apiKey = import.meta.env.OPENAI_API_KEY;
 function ChatInput({chatMessages, setChatMessages}){
-  let textMessage;
+  const [textMessage, setTextMessage] = React.useState(""); // Use state
 
-  function updateMessage(event){
-    textMessage = event.target.value;
+  function updateMessage(event) {
+    setTextMessage(event.target.value); // Only updates input value, not the whole component
   }
 
   const aiChat = async (message) => {
@@ -24,7 +24,8 @@ function ChatInput({chatMessages, setChatMessages}){
 
   const sendMessage = async()=>{
     //The below function is used to update the data. The argument is the updated data.
-    const aiResp = await aiChat(textMessage);
+    // const aiResp = await aiChat(textMessage);
+    const aiResp = "This is a placeholder response from the AI.";
     
     await setChatMessages([
       ...chatMessages, {
@@ -36,20 +37,23 @@ function ChatInput({chatMessages, setChatMessages}){
           sender: 'ai'
       }
     ])
+
+    setTextMessage("");
   }
 
 
   return (
-    <>
+    <div className="chat-input-container">
       <input 
         placeholder="Send a message to Chatbot" 
         size="34"
         className="chat-input"
+        value={textMessage}
         onChange={updateMessage} />
       <button 
         onClick={sendMessage}
         className="send-button">Send</button>  
-    </>
+    </div>
   );
 }
 
@@ -59,17 +63,22 @@ function ChatMessages({chatMessages}){
 
   return (
           <>
-            {
-              chatMessages.map((messageObj)=>{
-                return (
-                  <div>
-                    {messageObj.sender==='ai' && <img src="ai.png" width="50"/>}
-                    {messageObj.message}
-                    {messageObj.sender==='user' && <img src="user.png" width="50"/>}
-                  </div>
-                )
-              })
-            }
+              {
+                chatMessages.map((messageObj)=>{
+                  return (
+                    <div className={
+                      messageObj.sender==='user' 
+                        ? "chat-message-user" 
+                        : "chat-message-ai"}>
+                      {messageObj.sender==='ai' && <img src="ai.png" width="50"/>}
+                      <div className="message-text"> 
+                        {messageObj.message}
+                      </div>                      
+                      {messageObj.sender==='user' && <img src="user.png" width="50"/>}
+                    </div>
+                  )
+                })
+              }
           </>
         )
 }
@@ -79,13 +88,13 @@ function App() {
   //You are initializing chatmessages as empty array and as a react state. Whenever you would update this array using setchatmessages method, this App componenet will be reran.
   const [chatMessages, setChatMessages] = React.useState([])
   return (
-    <>
+    <div className="app-container">
       <ChatInput 
         chatMessages={chatMessages}
         setChatMessages={setChatMessages} />
       <ChatMessages 
         chatMessages={chatMessages} />
-    </>
+    </div>
   )
 
 }
